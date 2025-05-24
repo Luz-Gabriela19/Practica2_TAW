@@ -1,42 +1,118 @@
-2025# Proyecto CRUD - Universidad
+# Documentación del Proyecto Universidad
 
-Este repositorio contiene la base del proyecto Universitario utilizando **Spring Boot**. Cada grupo debe trabajar en su propia rama según las instrucciones del docente.
+## Tabla de Contenidos
+- [Descripción del Proyecto](#descripción-del-proyecto)
+- [Estructura del Proyecto](#estructura-del-proyecto)
+- [Tecnologías Utilizadas](#tecnologías-utilizadas)
+- [Instrucciones de Configuración](#instrucciones-de-configuración)
+- [Funcionalidades](#funcionalidades)
+- [Endpoints de la API](#endpoints-de-la-api)
+- [Configuración de Seguridad](#configuración-de-seguridad)
+- [Configuración de Swagger](#configuración-de-swagger)
+- [Validación](#validación)
+- [Contacto](#contacto)
 
----
+## Descripción del Proyecto
+Este proyecto es una aplicación Spring Boot diseñada para gestionar datos relacionados con la universidad, incluyendo profesores, estudiantes, cursos e inscripciones. Proporciona una API RESTful para realizar operaciones CRUD e incluye características de seguridad como autenticación y autorización.
 
-## 🚀 Objetivo
+## Estructura del Proyecto
+El proyecto está organizado en los siguientes paquetes principales:
+```
+src/main/java/com/universidad/
+├── controller/ # Controladores REST
+├── dto/ # Objetos de Transferencia de Datos
+├── model/ # Entidades de la base de datos
+├── repository/ # Repositorios JPA
+├── service/ # Lógica de negocio
+├── registro/ # Autenticación y seguridad
+└── validation/ # Validación de datos
+```
 
-Completar las operaciones requeridas sobre el Proyecto.
+## Paquetes y Clases Principales:
+- **com.universidad.controller:** Contiene los controladores REST para gestionar entidades como Docente, Estudiante, Materia, Inscripcion y EvaluacionDocente.
 
-**Grupos y ramas asignadas**
+- **com.universidad.dto:** Define los Objetos de Transferencia de Datos (DTO) utilizados para el intercambio de datos entre el cliente y el servidor.
 
-|**Grupo**|**Ramaogiana**|**Integrantes**|
-| :-: | :-: | :-: |
-|01|grupo-01-springb|[Enrique Rafael Fernández Chiri, Nohemy Ruth Mamani Apaza, Samantha Rousse Gironda Mina, Josué Misael López Huanca, Luz Belén Chávez Patzi, Oscar Joel Choque Flores, Cristhian Pablo Álvarez Guarachi]|
-|02|grupo-02-springb|[Maya Cádiz, Leandro Chávez, Masiel Chirinos, Sergio Luque, Jordy Miranda, Saúl Sánchez, Elizabeth Suzaño]|
-|03|grupo-03-springb|[Bautista Mollo Denzel Guden, Copa Quispe Esther Sara, Guarachi Arguata Alberth, Reyes Barja Carlos Eduardo, Rojas Condoria Fidel Angel, Tancara Suñagua Joel Hernan.]|
-|04|grupo-04-springb|[Marcelo Alejandro Villarroel Gutiérrez, Jonathan Gerson Gutiérrez Condori, Betzabe Gutiérrez Morales, Mikaela Belén Córdova Vásquez, Jhessica Coral Villca Palma, Karen Rocio Catari Calderón, Abigail Blanca Mamani Mamani]|
-|05|grupo-05-springb|["Diana Cecilia Flores Chacón, Juan Sebastián Camacho Fernández, Andrés Wiliam Galarza Salguero, Harold Ruddy Quispe Hilari, José Alejandro Díaz Ali, Michelle Ruth Poma Ramos, Daron Augusto Baldiviezo Aillon"]|
-|06|grupo-06-springb|[José Aruquipa, Miguel Calderón, Herlan Callisaya, Oscar Luján, Edith Marca, Luz Tinta, Daniel Zeballos]|
-|07|grupo-07-springb|[Lenz Abad Alanoca Ojeda,Juan Vidal Mamani Riveros,Herlan Choque Flores,Lorgio Emilio Chura Carrillo,Jesús Alejandro Cruz,Juan Carlos Limachi Maydana]|
-|08|grupo-08-springb|[Amílcar Josías Yujra Chipana, Luis Alfredo Quispe Ortiz, Alan Sergio Yupanqui Corini, Yehonatan Oscar Limachi Corina, Melany Abril Mamani Chamizo, Limbert Mamani Quiñajo, Ronald Choque Sillo]|
-|09|grupo-09-springb|[Bautista Coaquira Jose Abraham, Laura Rios Lizbeth Fabiola, Penélope Gema Copana Fuentes, Sasha Johannes konrad Arana Ramirez, Callisaya Vargas Marco Ronaldo, Callisaya Lanes Shelly Anahi, Choque Gutiérrez Manuel Alejandro, Elías Daniel Beltrán Selaez]|
-|10|grupo-10-springb|[María Teresa Aspiazu Sánchez, Jesús Abed Herrera Sirpa, Joel Alejandro Pérez Murillo, Ariadne Checcid Quiroz Coila, Brandom Jhoseff Amezaga Garrido Cael Mathew Cuevas Alconini, José Alfredo Choque Choque]|
-|11|grupo-11-springb|[Israel Andrés Quenta Pomacusi, Edson Javier Mamani Ticona,Jhamil Elías Mamani Colque,Alexander Nataniel Castillo Centellas,Adrián Marcelo Requena Oros,Maritza Zárate Paco ,Jhoel Alexander Chipana Paye]|
-|12|grupo-12-springb|[Víctor Bernardo Quispe Rojas,Gabriel Omar Cumara Patty,Cristian William Bautista Villcacuti,Rosa Katerine Gonzales Choque,Alvin Angel Magne Aruquipa,Blanca Nataly Chipana Orellana,Ronald Mendoza Caspa,José Julián Quinteros Mollinedo]|
-|13|grupo-13-springb|[Quispe Adriana, Carvajal Ester, Tirado Nayheli, Canaviri Carlos, Loza Humberto, Mamani Sarahi, Ticona Alex]|
-|14|grupo-14-springb|[Gutiérrez Challapa Daniel Rodrigo, Hidalgo Colque Ariana Daniela,Huanca Tito José Manuel,Mamani Mamani Mirko Sony,Quecaño Uruña Erika,Quiñajo Berrios Melina Viana]|
-|15|grupo-15-springb|[Julio Picavia Saravia, Carlos Callisaya Rosas, Iver Mamani, Amiel Natanieli Méndez Vargas, Adriana Valeria Fernández Flores, Luz Edely Aruquipa Ururi]|
-|16|Grupo-16-springb|[Miranda Aguirre Carlos Manuel, Tapia Cortez Genesis Jalid, Aarón Oswaldo Nina Calzada, Lucas Calderon, David Mamani, Rudy Ibarra, Julio Cesar Ticona, José Alejandro Fernández Sánchez ]|
+- **com.universidad.model:** Define las clases de entidad que representan las tablas de la base de datos.
 
+- **com.universidad.repository:** Contiene los repositorios Spring Data JPA para la interacción con la base de datos.
 
+- **com.universidad.service:** Define las interfaces y las implementaciones de la capa de servicio para la lógica de negocio.
 
+- **com.universidad.service.impl:** Contiene las implementaciones para las interfaces de la capa de servicio.
 
----
+- **com.universidad.registro:** Maneja la autenticación y autorización del usuario.
 
+- **com.universidad.registro.config:** Contiene las clases de configuración para la inicialización de la base de datos, la seguridad y Swagger.
 
-## 📦 Cómo trabajar en tu rama
+- **com.universidad.registro.controller:** Contiene los controladores para la autenticación y gestión de usuarios.
 
-1. Clona el repositorio:
+- **com.universidad.registro.dto:** Define los DTO para la autenticación.
+
+- **com.universidad.registro.model:** Define las entidades Rol y Usuario.
+
+- **com.universidad.registro.repository:** Contiene los repositorios para Rol y Usuario.
+
+- **com.universidad.registro.security:** Implementa la autenticación basada en JWT.
+
+- **com.universidad.registro.service:** Implementa el servicio de detalles del usuario para la autenticación.
+
+- **com.universidad.validation:** Contiene las clases para la validación de datos de entrada y el manejo global de excepciones.
+
+- **com.universidad.UniversidadApplication:** La clase principal que inicia la aplicación Spring Boot.
+
+- **src/main/resources:** Contiene el archivo application.properties para configurar la aplicación.
+## Tecnologías Utilizadas
+- **Backend**: Java 11+, Spring Boot
+- **Persistencia**: Spring Data JPA, H2 (desarrollo)
+- **Seguridad**: Spring Security, JWT
+- **Documentación**: Swagger
+- **Gestión de dependencias**: Maven
+
+## Instrucciones de Configuración
+1. Clonar el repositorio:
 ```bash
-git clone https://github.com/LiaRos-ai/RegistroUniversitario.git
+git clone <url-del-repositorio>
+cd <nombre-del-proyecto>
+Configurar la base de datos (editar application.properties)
+Compilar y ejecutar:
+
+mvn clean install
+mvn spring-boot:run
+```
+## Funcionalidades
+- CRUD completo para entidades académicas
+- Autenticación JWT
+- Control de acceso por roles
+- Validación de datos
+- Documentación API con Swagger
+
+## Endpoints de la API
+**Autenticación**
+- POST /api/auth/login - Autenticación de usuarios
+**Estudiantes**
+- GET /api/estudiantes - Listar todos
+- POST /api/estudiantes - Crear nuevo
+- GET /api/estudiantes/{id} - Obtener por ID
+**Docentes**
+- GET /api/docentes - Listar todos
+- POST /api/docentes - Crear nuevo
+- PUT /api/docentes/{id} - Actualizar
+
+## Configuración de seguridad
+La seguridad se implementa con:
+- Spring Security
+- JSON Web Tokens (JWT)
+- BCrypt para hashing de contraseñas
+- Control de acceso basado en roles
+
+## Configuración de Swagger
+Acceder a la documentación en:
+http://localhost:8080/swagger-ui/index.html
+Configuración principal en:
+```com.universidad.registro.config.SwaggerConfig```
+## Validación
+Se implementan:
+- Validadores customizados
+- Manejo global de excepciones
+- Manejo de roles
