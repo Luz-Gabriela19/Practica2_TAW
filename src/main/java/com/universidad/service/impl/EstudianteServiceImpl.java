@@ -120,6 +120,7 @@ public class EstudianteServiceImpl implements IEstudianteService { // Define la 
     }
 
     @Transactional
+    @Cacheable(value = "estudianteConBloqueo", key = "#id")
     public Estudiante obtenerEstudianteConBloqueo(Long id) {
         Estudiante est = estudianteRepository.findById(id)
             .orElseThrow(() -> new RuntimeException("Estudiante no encontrado"));
@@ -128,6 +129,16 @@ public class EstudianteServiceImpl implements IEstudianteService { // Define la 
             try { Thread.sleep(15000); } catch (InterruptedException e) { Thread.currentThread().interrupt(); }
         // Simula un tiempo de procesamiento prolongado
         return est;
+    }
+
+    @Override
+    @Transactional
+    @CacheEvict(value = {"estudiante", "estudiantes", "estudiantesActivos"}, allEntries = true)
+    public void eliminarEstudianteFisicamente(Long id) {
+        if (!estudianteRepository.existsById(id)) {
+            throw new RuntimeException("Estudiante no encontrado para eliminación física.");
+        }
+        estudianteRepository.deleteById(id);
     }
 
     // Método auxiliar para convertir entidad a DTO

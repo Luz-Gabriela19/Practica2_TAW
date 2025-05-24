@@ -67,4 +67,9 @@ public interface IEstudianteService { // Define la interfaz IEstudianteService
      * @return
      */
     Estudiante obtenerEstudianteConBloqueo(Long id); // Método para obtener un estudiante por su ID con bloqueo pesimista
+    /**
+     * Elimina físicamente un estudiante por su ID.
+     * @param id ID del estudiante a eliminar.
+     */
+    void eliminarEstudianteFisicamente(Long id); 
 }
