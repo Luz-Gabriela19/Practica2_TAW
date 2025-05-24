@@ -108,7 +108,7 @@ La seguridad se implementa con:
 
 ## Configuración de Swagger
 Acceder a la documentación en:
-http://localhost:8080/swagger-ui/index.html
+[http://localhost:8080/swagger-ui/index.html#/]
 Configuración principal en:
 ```com.universidad.registro.config.SwaggerConfig```
 ## Validación
